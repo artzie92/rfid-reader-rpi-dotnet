@@ -1,0 +1,33 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": ".NET Core Attach",
+      "type": "coreclr",
+      "request": "attach",
+      "pipeTransport": {
+        "pipeCwd": "${workspaceFolder}",
+        "pipeProgram": "ssh",
+        "pipeArgs": ["pi@192.168.1.112"],
+        "debuggerPath": "/home/pi/vsdbg/vsdbg"
+      }
+    },
+    {
+      "preLaunchTask": "deploy",
+      "name": "WorkTimeMonitor.RfidReader",
+      "type": "coreclr",
+      "request": "launch",
+      "program": "/home/pi/.dotnet/dotnet",
+      "args": ["/home/pi/work-time-monitor/WorkTimeMonitor.RfidReader.dll"],
+      "cwd": "/home/pi/work-time-monitor",
+      "stopAtEntry": false,
+      "console": "externalTerminal",
+      "pipeTransport": {
+        "pipeCwd": "${workspaceFolder}",
+        "pipeProgram": "ssh",
+        "pipeArgs": ["pi@192.168.1.112"],
+        "debuggerPath": "/home/pi/vsdbg/vsdbg"
+      }
+    }
+  ]
+}

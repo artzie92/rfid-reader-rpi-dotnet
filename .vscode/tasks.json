@@ -1,0 +1,38 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "build",
+        "${workspaceFolder}/WorkTimeMonitor.RfidReader/WorkTimeMonitor.RfidReader.csproj",
+        "/property:GenerateFullPaths=true",
+        "/consoleloggerparameters:NoSummary"
+      ],
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "publish",
+      "command": "dotnet publish ${workspaceFolder}/WorkTimeMonitor.RfidReader -r linux-arm -o ${workspaceFolder}/WorkTimeMonitor.RfidReader/bin/arm",
+      "type": "shell",
+      "problemMatcher": [],
+      "dependsOn": "build"
+    },
+    {
+      "label": "deploy",
+      "command": "scp -r ${workspaceFolder}/WorkTimeMonitor.RfidReader/bin/arm pi@192.168.1.112:/home/pi/work-time-monitor/",
+      "dependsOn": "publish",
+      "type": "shell",
+      
+      "problemMatcher": []
+    },
+    {
+      "label": "Open Terminal",
+      "type": "shell",
+      "command": "osascript -e 'tell application \"Terminal\"\ndo script \"echo hello\"\nend tell'",
+      "problemMatcher": []
+    }
+  ]
+}
